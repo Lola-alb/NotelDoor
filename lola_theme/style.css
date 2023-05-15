@@ -1,0 +1,879 @@
+/*
+Theme Name: Perception
+Theme URI: 
+Author: Lola Albrecht
+Author URI: http://lola-albrecht.com
+Description: 
+Tags : dark mode, light mode, one-column
+Version : 1.0.0
+Requires at least: 5.0
+Tested up to: 5.4
+Requires PHP: 8.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: wpcaweb
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/
+
+
+/*Font-bunny figtree*/
+:root {
+	--primary-color: #2B2C49;
+    --button-color:#909FCE;
+    --button-hover:#6a7bad;
+	--secondary-color: #909FCE;
+	--tertiary-color:#d67b4e;
+    --secondary-title-color:#9e7db9;
+    --footer-color:#2B2C49;
+    --form-color:#909FCE26;
+    --text-color:#2B2C49;
+    --elements-color: #1D1E2F;
+	--bg-color:rgb(248, 248, 248);
+}
+.dark-mode{
+    --primary-color: #B3A0C3;
+    --button-color:#B3A0C3;
+    --button-hover:#9e7db9;
+	--secondary-color: #B3A0C3;
+	--tertiary-color:#F2AA87;
+    --secondary-title-color:#F2E8C5;
+    --footer-color:#2B2C49;
+    --form-color:#2c2d45;
+    --text-color:rgb(248, 248, 248);
+	--elements-color: rgb(248, 248, 248);
+    --bg-color:#1D1E2F;
+}
+
+*, *:before, *:after {
+	box-sizing: border-box;
+}
+
+html, body {
+	margin: 0;
+    background-color: var(--bg-color);
+    font-family: sans-serif;
+    overflow-x: hidden;
+}
+
+/*Elements de base des pages*/
+main{
+    margin: 5% 10%;
+}
+
+#main-home{
+    margin:5% 7%;
+}
+h1{
+    color:var(--secondary-color);
+    text-align:center
+}
+
+h2{
+    color:var(--text-color);
+}
+
+h3{
+    color:var(--text-color);
+    font-size:1.5rem;
+}
+
+h1, h2{
+    margin-bottom: 15px;
+}
+
+p{
+    color:var(--text-color);
+    font-size:1.15rem;
+}
+
+/*header*/
+.menu-header-container{
+    display:flex;
+    align-items: center;
+}
+
+nav {
+    background-color: var(--bg-color);
+	position: fixed;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+	top: 0px;
+	width: 100%;
+    height:100px;
+    border-bottom: 5px solid var(--primary-color);
+    padding-right: 50px;
+	z-index:3;
+}
+
+	nav a {
+		text-decoration: none;
+        color:var(--text-color);
+	}
+
+    nav a:hover{
+        color:var(--button-color);
+    }
+
+    nav li:not(.sub-menu li){
+        padding-top: 10px;
+        position:relative;
+    }
+
+    #menu-header-fr>li:hover:after, #menu-header-en>li:hover:after{
+        content:'';
+        width:7px;
+        height:7px;
+        margin-top:10px;
+        border:solid 1px var(--primary-color);
+        rotate: 45deg;
+        position:absolute;
+        display:block;
+        margin-left:calc(50% - 5px);
+    }
+
+
+    #menu-header-fr, #menu-header-en {
+		list-style-type: none;
+		display: flex;
+        flex-direction: row;
+		justify-content: flex-end;
+		gap: 30px;
+        transition: all .6s ease;
+	} 
+
+.sub-menu{
+    display:none;
+    position: absolute;
+    list-style-type: none;
+    width: 200px;
+    padding-left: 5px;
+    padding-top: 10px;
+    background-color: var(--bg-color);
+    z-index:3;
+}
+
+.sub-menu li{
+    padding:10px;
+}
+
+.pll-parent-menu-item:hover .sub-menu{
+    display:block;
+}
+
+.al-mode{
+    position:relative;
+}
+
+.al-mode a i:hover{
+    color:var(--button-color);
+}
+.al-mode:hover:before{
+    content:"Theme";
+    width: 60px;
+    color: var(--button-color);
+    font-size:.75rem;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 60%;
+    margin-left: -25px;
+}
+
+.image-logo{
+    max-width: 200px;
+    margin-left: 30px;
+    cursor:pointer;
+}
+
+.toggle-button{
+    display:none;
+}
+
+.navbar-mode{
+    background-color: var(--bg-color);
+    border:none;
+}
+
+.hero-inner{
+    background-image: url('assets/images/light/accueil1920x820.png');
+    background-size:cover;
+    background-repeat: no-repeat;
+    width:100vw;
+    height:100vh;
+    position:relative;
+    z-index:2;
+}
+
+.dark-mode .hero-inner{
+    background-image: url('assets/images/dark/accueil1920x820.png');
+}
+
+.hero-inner + div {
+    color: white;
+    position: absolute;
+    top: calc(100vh - 50px);
+    left: calc(50vw - 5%);
+    width: 10%;
+    text-align: center;
+    text-shadow: 2px 2px 10px black;
+    z-index: 2;
+}
+
+.hero-inner + div:after{
+    content:"\2193"; 
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 90%;
+    left: 0; 
+    text-shadow: 2px 2px 10px black;
+}
+
+
+/*Accueil*/
+.al-home-eye{
+    background-image: url('assets/images/light/accueil_perso_light.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 130px;
+    position: fixed;
+    height: 130px;
+    top: 50%;
+    left: calc(50vw - 130px);
+    z-index:1;
+}
+
+.dark-mode .al-home-eye{
+    background-image: url('assets/images/dark/accueil_perso_dark.svg');
+}
+.al-home-line{
+    width:2px;
+    height:100vh;
+    position: fixed;
+    left:50vw;
+    top:0;
+    background-color: var(--text-color);
+    z-index: 1;
+}
+
+.al-image-home-who{
+    background-image: url('assets/images/light/deco_accueil-17.svg');
+}
+
+.al-image-home-rooms{
+    background-image: url('assets/images/light/deco_accueil-19.svg');
+}
+
+.al-image-home-booking{
+    background-image: url('assets/images/light/deco_accueil-16.svg');
+}
+
+.dark-mode .al-image-home-who{
+    background-image: url('assets/images/dark/deco_accueil-15.svg');
+}
+
+.dark-mode .al-image-home-rooms{
+    background-image: url('assets/images/dark/deco_accueil-14.svg');
+}
+
+.dark-mode .al-image-home-booking{
+    background-image: url('assets/images/dark/deco_accueil-15.svg');
+}
+
+#main-home h1{
+    text-align: left;
+}
+.al-image-home-booking, .al-image-home-rooms, .al-image-home-who{
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 150px;
+}
+
+.al-home-textbloc{
+    margin-top:70px;
+    gap:37%;
+}
+
+@media screen and (max-width:950px) {
+    .al-home-textbloc{
+        flex-direction: column;
+        gap:50px;
+    }
+
+    div.wp-block-columns:nth-child(4){
+        flex-direction: column-reverse;
+    }
+
+    .al-home-eye{
+        width: 90px;
+        height: 90px;
+        left: calc(100vw - 90px);
+    }
+
+    .al-home-line{
+        display:none;
+    }
+
+    #main-home{
+        margin:10% 7%;
+    }
+}
+@media screen and (max-width:570px) {
+    .al-home-eye{
+        display:none;
+    }
+}
+
+/*Boutons*/
+.wp-block-button__link{
+    color:white;
+    background-color: var(--button-color);
+    font-size:1rem;
+    font-weight:bold;
+    border-radius:0;
+    margin-top:15px;
+}
+
+.wp-block-button__link:hover{
+    background-color: var(--button-hover);
+    color:white;
+}
+
+
+/*header responsive*/
+@media screen and (max-width:768px) {
+    nav{
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding-right:30px;
+    }
+    #menu-header-fr, #menu-header-en{
+		flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap:0;
+        padding:0;
+        height:100vh;
+        left: 100%;
+        top:100px;
+        position: absolute;
+        background-color: var(--bg-color);
+        transition:width .6s, left .6s;
+ 	}
+
+     .sub-menu{
+        display:block;
+        width:100%;
+        position: relative;
+        padding-top: 0;
+    }
+
+    .pll-parent-menu-item > a{
+        display:none;
+    }
+
+    .navbar-logo{
+        align-self: flex-start;
+        margin-bottom: 15px;
+    }
+
+    /* #menu-header-fr .menu-item, #menu-header-en .menu-item{
+		margin-bottom:20px;
+		display:none;
+	}  */
+    .menu-item{
+		margin-bottom:20px;
+		display:none;
+	} 
+    
+    .visible{
+        display:block;
+        margin-top:10px;
+    }
+
+	.toggle-button {
+		display:flex;
+		flex-direction: column;
+		justify-content: space-between;
+        align-self:flex-end;
+        width: 40px;
+		height: 40px;
+        position: fixed;
+        top: 35px;
+        right: 30px;
+        z-index: 3;
+ 	}
+    
+	.toggle-button .bar {
+		position: absolute;
+        height: 4px;
+		width: 100%;
+		background-color: var(--primary-color);
+		border-radius: 20px;
+        top:10px;
+        left:50%;
+        transform:translate(-50%, -50%);
+		transition: transform .4s, opacity .6s, top .4s;
+	}
+    .bar:nth-child(1){
+        top:0;
+    }
+    .bar:nth-child(3){
+        top:20px;
+    }  
+
+    .toggle-button.menu-open .bar:nth-child(1){
+        transform:translate(-50%, -50%) rotate(-315deg);
+        top:10px;
+    }
+    .toggle-button.menu-open .bar:nth-child(2){
+        opacity:0;
+    }
+    .toggle-button.menu-open .bar:nth-child(3){
+        transform:translate(-50%, -50%) rotate(-225deg);
+        top:10px;
+    }
+    .toggle-button:hover span:nth-child(2) {
+		width:60%;
+		transition: width 0.5s ease;
+	}
+    
+}
+
+/*Contact*/
+.banner-contact-inner{
+    /* background-image: url('http://localhost/site_multilingue/wp-content/uploads/2023/03/banner_day1.png'); */
+    background-image: url('assets/images/light/banner_contact.svg');
+    background-size:cover;
+    background-repeat: no-repeat;
+    width:100vw;
+    height:35vh;
+}
+
+.dark-mode .banner-contact-inner{
+    background-image: url('assets/images/dark/bannercontact.svg');
+}
+
+/*Template chambres*/
+/* h1.room-title{
+    text-align:center;
+} */
+
+.banner-rooms-inner{
+    background-image: url('assets/images/light/banner_chambres-17.svg');
+    background-size:cover;
+    background-repeat: no-repeat;
+    width:100vw;
+    height:35vh;
+}
+
+.dark-mode .banner-rooms-inner{
+    background-image: url('assets/images/dark/banner_chambres-16.svg');
+}
+
+.wp-block-search__button{
+    background-color: var(--button-color);
+    color:white;
+    border:var(--button-color);
+    position:relative;
+    left:-12px;
+}
+.wp-block-search__button:hover{
+    background-color: var(--button-hover);
+}
+
+.wp-block-search__input{
+    border:2px solid var(--text-color);
+    background-color: transparent;
+    color:var(--text-color);
+}
+
+
+#al-post-list{
+    display:flex;
+    flex-wrap:wrap;
+    margin:20px 0 100px 0;
+}
+
+#al-post-list a{
+    color:var(--text-color);
+}
+
+#al-post-list h3{
+    text-align: center;
+    font-weight:lighter;
+}
+
+#al-post-list article{
+    text-align:center;
+    flex-basis: 33.33%;
+    margin-top:80px;
+}
+
+.image-room{
+    max-width: 400px;
+    min-width: 250px;
+    margin: 50px auto;
+}
+
+.al-content h2{
+    margin:70px 0 40px 0;
+}
+
+.image-bottom-room{
+    width: 500px;
+    margin-top: 70px;
+    position: relative;
+    margin-left:auto;
+}
+
+.image-bottom-room a{
+    position: absolute;
+    top: 40px;
+    left: 47px;
+    color:white;
+    text-decoration: none;
+    font-size:1rem;
+    background-color: var(--footer-color);
+    padding:7px 10px;
+}
+
+.image-bottom-room a:hover{
+    background-color: black;
+}
+
+@media screen and (max-width:768px){
+    #al-post-list article{
+        flex-basis: 50%;
+    }
+}
+
+@media screen and (max-width:573px){
+    #al-post-list article{
+        flex-basis: 100%;
+    }
+    
+    .image-bottom-room{
+        width:350px;
+        margin-left:-20px;
+    }
+    .image-bottom-room a{
+        top:25px;
+        left:25px;
+        font-size:0.80rem;
+    }
+}
+
+/*Page de résultat des recherches depuis les chambres*/
+.display-search-result a{
+    color:var(--secondary-title-color);
+    font-size:1.25rem;
+}
+
+.display-search-result li{
+    margin-top:50px;
+}
+
+/*Template articles*/
+#al-single-main{
+    margin-top:15px;
+}
+
+.al-image-light, .al-image-dark{
+    display: none;
+}
+
+/* #al-single-main h1{
+    text-align:center;
+} */
+#al-single-main .al-content .wp-block-image{
+    margin:50px 0;
+}
+#al-single-main .al-content .wp-block-image img{
+    max-width:90%;
+}
+
+#al-single-main .al-content p{
+    margin-bottom:30px;
+}
+
+.al-single-navigation{
+    display: flex;
+    justify-content: space-between;
+    margin: 70px 0 130px 0;
+}
+
+.al-single-navigation div{
+    width:33.33%;
+}
+.al-single-navigation div:nth-child(2){
+    text-align: center;
+}
+.al-single-navigation img{
+    width:55px;
+}
+.al-single-navigation-next{
+    text-align: right;
+}
+
+.al-single-navigation-next, .al-single-navigation-prev{
+    position:relative;
+}
+.showArrow:after{
+    color:var(--text-color);
+    display: block;
+    position: absolute;
+    font-size: .75em;
+    top: 4px;
+}
+
+.al-single-navigation-next.showArrow:after{
+    content:'\25B6';
+    right: -20px;
+}
+
+.al-single-navigation-prev.showArrow:after{
+    content:'\25C0';
+    left: -20px;
+}
+
+.al-single-navigation a{
+    color:var(--text-color);
+}
+
+.image-bottom-single{
+    width: 500px;
+    margin-right:auto;
+    position: relative;
+}
+
+.image-bottom-single a{
+    position: absolute;
+    top: 50px;
+    right: 65px;
+    color:white;
+    text-decoration: none;
+    font-size:1rem;
+    background-color: var(--footer-color);
+    padding:7px 10px;
+}
+
+.image-bottom-single a:hover{
+    background-color: black;
+}
+
+@media screen and (max-width:768px){
+    .image-bottom-single{
+        width:450px;
+    }
+    .image-bottom-single a{
+        top:45px;
+        right:55px;
+        font-size:0.90rem;
+    }
+}
+
+@media screen and (max-width:573px){
+    .image-bottom-single{
+        width:300px;
+    }
+    .image-bottom-single a{
+        top:25px;
+        right:25px;
+        font-size:0.75rem;
+    }
+    #al-single-main .al-content .wp-block-image img{
+        max-width:65%;
+    }
+    #al-single-main .wp-block-image .aligncenter{
+        text-align: center;
+    }
+}
+
+/*Template réservation*/
+.banner-resa-inner{
+    background-image: url('assets/images/light/banner_residant-18.svg');
+    background-size:cover;
+    background-repeat: no-repeat;
+    width:100vw;
+    height:35vh;
+}
+
+.dark-mode .banner-resa-inner{
+    background-image: url('assets/images/dark/banner_residant-19.svg');
+}
+.wpforms-container .wpforms-image-choices-modern img{
+    max-width:170px;
+}
+
+#wpforms-174-field_6 img, .wpforms-container #wpforms-174-field_7 img{
+    max-width:80px;
+}
+
+.wpforms-container .wpforms-field-label{
+    color:var(--secondary-title-color);
+}
+
+div.wpforms-container-full .wpforms-field-label-inline, div.wpforms-container-full .wpforms-field-label,
+div.wpforms-container-full .wpforms-form ul.wpforms-image-choices-modern .wpforms-image-choices-item label .wpforms-image-choices-label, div.wpforms-container-full .wpforms-form ul.wpforms-image-choices-classic .wpforms-image-choices-item label .wpforms-image-choices-label, div.wpforms-container-full .wpforms-form ul.wpforms-image-choices-none .wpforms-image-choices-item label .wpforms-image-choices-label,
+div.wpforms-container-full .wpforms-form textarea:focus{
+    color:var(--text-color);
+}
+
+.wpforms-container .wpforms-required-label{
+    color:var(--tertiary-color);
+}
+
+div.wpforms-container-full input[type="date"], div.wpforms-container-full input[type="datetime"], div.wpforms-container-full input[type="datetime-local"], div.wpforms-container-full input[type="email"], div.wpforms-container-full input[type="month"], div.wpforms-container-full input[type="number"], div.wpforms-container-full input[type="password"], div.wpforms-container-full input[type="range"], div.wpforms-container-full input[type="search"], div.wpforms-container-full input[type="tel"], div.wpforms-container-full input[type="text"], div.wpforms-container-full input[type="time"], div.wpforms-container-full input[type="url"], div.wpforms-container-full input[type="week"], div.wpforms-container-full select, div.wpforms-container-full textarea{
+    background-color: var(--bg-color);
+    color:var(--text-color);
+    border:none;
+    border-bottom:3px solid var(--secondary-color);
+    border-radius: 0;
+}
+
+div.wpforms-container-full input[type="date"]:focus, div.wpforms-container-full input[type="datetime"]:focus, div.wpforms-container-full input[type="datetime-local"]:focus, div.wpforms-container-full input[type="email"]:focus, div.wpforms-container-full input[type="month"]:focus, div.wpforms-container-full input[type="number"]:focus, div.wpforms-container-full input[type="password"]:focus, div.wpforms-container-full input[type="range"]:focus, div.wpforms-container-full input[type="search"]:focus, div.wpforms-container-full input[type="tel"]:focus, div.wpforms-container-full input[type="text"]:focus, div.wpforms-container-full input[type="time"]:focus, div.wpforms-container-full input[type="url"]:focus, div.wpforms-container-full input[type="week"]:focus, div.wpforms-container-full select:focus, div.wpforms-container-full textarea:focus{
+    border:none;
+    border-bottom:3px solid var(--secondary-color);
+    border-left:3px solid var(--secondary-color);
+    box-shadow:0 0 0 0;
+}
+
+.wpforms-container textarea.wpforms-field-medium{
+    min-height:250px;
+}
+
+div.wpforms-container-full input[type="submit"]:not(:hover):not(:active), div.wpforms-container-full button[type="submit"]:not(:hover):not(:active), div.wpforms-container-full .wpforms-page-button:not(:hover):not(:active), div.wpforms-container-full input[type="submit"], div.wpforms-container-full button[type="submit"], div.wpforms-container-full .wpforms-page-button{
+    border-radius: 0;
+    background-color: var(--button-color);
+    color:var(--bg-color);
+} 
+
+div.wpforms-container-full input[type="submit"]:hover, div.wpforms-container-full input[type="submit"]:active, div.wpforms-container-full button[type="submit"]:hover, div.wpforms-container-full button[type="submit"]:active, div.wpforms-container-full .wpforms-page-button:hover, div.wpforms-container-full .wpforms-page-button:active{    
+    background-color: var(--button-hover);
+    color:white;
+}
+
+div.wpforms-container-full .wpforms-form ul.wpforms-image-choices-modern .wpforms-image-choices-item label:hover, div.wpforms-container-full .wpforms-form ul.wpforms-image-choices-classic .wpforms-image-choices-item label:hover{
+    border:1px solid var(--secondary-color);
+    box-shadow:none;
+    border-radius:0;
+}
+
+div.wpforms-container-full .wpforms-form .wpforms-image-choices-modern .wpforms-image-choices-item label:focus, div.wpforms-container-full .wpforms-form .wpforms-image-choices-modern .wpforms-image-choices-item label:focus-within{
+    box-shadow:none;
+    border:2px solid var(--secondary-color);
+    border-radius: 0;
+}
+
+#main-resa .wp-block-image{
+    margin-top:70px;
+}
+
+div.wpforms-container-full{
+    padding:20px;
+    background-color: var(--form-color);
+}
+
+@media screen and (max-width:768px){
+    div.wpforms-container-full .wpforms-field.wpforms-field-radio.wpforms-list-inline ul{
+    display: flex;
+    justify-content: center;
+}
+    #wpforms-174-field_9-container{
+        margin-top:30px;
+}
+
+}
+
+/*Footer*/
+footer section{
+    width:100vw;
+    background-color: var(--footer-color);
+    color:white;
+    position:relative;
+    z-index:3;
+}
+
+footer{
+    margin-top:100px;
+}
+
+footer a{
+    color:white;
+}
+
+footer a:hover{
+    color:var(--secondary-color);
+}
+
+footer ul{
+    margin:20px 0;
+    padding:0;
+    list-style-type: none;
+}
+
+footer ul li{
+    margin-bottom:10px;
+}
+
+footer h2{
+    margin-top:20px;
+    color:white;
+}
+
+footer section .wp-block-column{
+    align-self: center;
+}
+
+footer section .wp-block-columns{
+    margin-bottom:0;
+    align-items:center;
+}
+
+footer section .wp-block-columns>div:last-child{
+    text-align: right;
+    padding-right: 80px;
+}
+footer section .wp-block-columns>div:first-child{
+    padding-left: 70px;
+}
+
+footer .menu-item{
+    display:block;
+}
+
+@media screen and (max-width:768px){
+    footer{
+        margin-top:100px;
+    }
+
+    footer section .wp-block-columns>div:nth-child(2){
+        display: none;
+    }
+
+    footer .wp-block-columns{
+        justify-content: space-between;
+    }
+
+    footer section .wp-block-columns>div:last-child{
+        padding-right: 30px;
+    }
+    footer section .wp-block-columns>div:first-child{
+        padding-left: 30px;
+    }
+    
+}
+
+@media screen and (max-width:573px){
+    footer section .wp-block-columns{
+        flex-direction:column;
+    }
+}
